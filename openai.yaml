@@ -1,0 +1,6 @@
+interface:
+  display_name: "HCI Design Intelligence"
+  short_description: "People-centered product and AI design"
+  default_prompt: "Use $hci-design-intelligence to help me make this product decision around people's goals, evidence, accessibility, wellbeing, and legitimate product outcomes."
+policy:
+  allow_implicit_invocation: true
