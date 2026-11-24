@@ -5,7 +5,7 @@ license: Mixed (CC BY 4.0 original prose; MIT scripts and HAX Playbook and Desig
 compatibility: Agent Skills-compatible hosts. References need filesystem reads; optional repository scripts need Python 3.10+.
 metadata:
   author: Sakshir
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # HCI Design Intelligence
@@ -42,6 +42,22 @@ For ideation, remain conversational. Ask one high-value question at a time, expl
 Prefer, in order: applicable standards and primary sources; peer-reviewed or foundational research; direct user/operational evidence; authoritative applied guidance; heuristics and synthesized principles; design convention; informed inference.
 
 Do not treat all sources as equally authoritative. A WCAG requirement, a controlled study, an NNG heuristic, a Laws of UX summary, and a design convention play different roles. Cite or name the source family near consequential claims. Read [references/foundational-source-guide.md](references/foundational-source-guide.md) and [references/open-access-theory-ledger.md](references/open-access-theory-ledger.md) when theory or source selection matters. When those do not provide enough depth, use [references/expanded-primary-source-library.md](references/expanded-primary-source-library.md) for collaboration, sensemaking, prototyping, cognitive accessibility, evaluation measures, trustworthy AI, appropriate reliance, privacy, service design, and sociotechnical systems.
+
+## Coursework-informed practice
+
+The repository includes public-safe original syntheses of the author's graduate coursework. Use them when the task benefits from a pedagogical or studio-practice lens, especially for coursework help, method selection, critique, project framing, and connecting theory to practice. Label conclusions as **course-derived guidance** when that provenance matters. Never present the synthesis as an instructor's exact view, a professional standard, or independent empirical proof; corroborate consequential claims with primary sources, standards, or direct project evidence.
+
+Route to only the relevant module:
+
+- evaluation strategy, metrics, moderation, and evidence communication: [coursework-advanced-usability.md](references/coursework-advanced-usability.md)
+- dialogue, intents, repair, multimodality, and conversational behavior: [coursework-conversational-ux.md](references/coursework-conversational-ux.md)
+- system architecture, tokens, adoption, contribution, and governance: [coursework-design-systems.md](references/coursework-design-systems.md)
+- disability, functional needs, assistive interaction, and inclusive product practice: [coursework-digital-accessibility.md](references/coursework-digital-accessibility.md)
+- organization, labeling, navigation, search, content models, and cross-channel structure: [coursework-information-architecture.md](references/coursework-information-architecture.md)
+- scope, stakeholders, collaboration, handoff, and project delivery: [coursework-project-ixd.md](references/coursework-project-ixd.md)
+- services, blueprints, co-design, systems, channels, and institutional effects: [coursework-service-design.md](references/coursework-service-design.md)
+- study design, inspection, synthesis, severity, prioritization, and reporting: [coursework-usability-testing.md](references/coursework-usability-testing.md)
+- hierarchy, composition, typography, motion, and data visualization: [coursework-visual-communication.md](references/coursework-visual-communication.md)
 
 ## People-centered product and growth decisions
 
@@ -110,6 +126,7 @@ Load only the references needed for the current decision:
 - Exploration and preference learning: `design-exploration-and-preference-learning.md`
 - Implementation quality and verified feedback: `implementation-quality-and-feedback-loops.md`
 - Systems, governance, tokens, and localization: `cyber-physical-product-service-systems.md`, `design-operations-governance-and-influence.md`, `design-token-standards.md`, `platform-content-localization.md`
+- Course-derived studio and method lenses: the nine `coursework-*.md` modules listed under **Coursework-informed practice**
 
 ## Response contract
 

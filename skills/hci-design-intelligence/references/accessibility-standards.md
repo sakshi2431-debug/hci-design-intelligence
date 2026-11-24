@@ -20,7 +20,7 @@ Distinguish models:
 
 Account for permanent, temporary, situational, visible, and non-visible disability and intersectional context. Ask rather than assume. Use identity- or person-first language according to individual/community preference.
 
-Course provenance: `COURSE — Digital Accessibility.zip / Week 2 - Understanding Disability.pdf, pp. 39–57`.
+Course-derived emphasis: disability should be understood in relation to functional needs, environments, tools, and barriers rather than as a fixed list of diagnoses. See [coursework-digital-accessibility.md](coursework-digital-accessibility.md).
 
 ## WCAG structure
 
@@ -85,7 +85,7 @@ Accessibility is shared responsibility. Establish policy, ownership, training, a
 3. keyboard and assistive-technology testing;
 4. usability research with disabled participants.
 
-No single layer proves accessibility. Course provenance: `COURSE — Digital Accessibility.zip / Week 11 - Accessibility in Product Development.pdf, pp. 10–29, 41–50`.
+No single layer proves accessibility. This product-lifecycle emphasis is also reflected in [coursework-digital-accessibility.md](coursework-digital-accessibility.md).
 
 For a formal audit scope, representative sampling, assistive-technology matrix, evidence record, and remediation retest, read [accessibility-evaluation.md](accessibility-evaluation.md).
 
@@ -93,4 +93,4 @@ For a formal audit scope, representative sampling, assistive-technology matrix, 
 
 Universal design seeks broadly usable products/environments through equitable use, flexibility, simplicity, perceptible information, tolerance for error, low effort, and adequate size/space. Inclusive design explicitly asks who is excluded, learns with diversity, and “solves for one, extends to many.” Do not claim one solution literally works for everyone; support adaptation and alternatives.
 
-Course provenance: `COURSE — Digital Accessibility.zip / Week 10 - Universal _ Inclusive Design.pdf, pp. 7–38`.
+Course-derived context for universal and inclusive design is summarized in [coursework-digital-accessibility.md](coursework-digital-accessibility.md).

@@ -43,6 +43,17 @@ PROFILES = {
         "design-operations-governance-and-influence.md",
         "ethics-privacy-deceptive-design.md",
     ],
+    "coursework": [
+        "coursework-advanced-usability.md",
+        "coursework-conversational-ux.md",
+        "coursework-design-systems.md",
+        "coursework-digital-accessibility.md",
+        "coursework-information-architecture.md",
+        "coursework-project-ixd.md",
+        "coursework-service-design.md",
+        "coursework-usability-testing.md",
+        "coursework-visual-communication.md",
+    ],
 }
 
 

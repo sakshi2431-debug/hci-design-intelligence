@@ -26,11 +26,25 @@ REQUIRED = [
     ROOT / "evals" / "README.md",
     ROOT / "scripts" / "eval_suite.py",
     ROOT / "scripts" / "package_repository.py",
+    ROOT / "docs" / "coursework-provenance.md",
 ]
+
+COURSEWORK_REFERENCES = {
+    "coursework-advanced-usability.md",
+    "coursework-conversational-ux.md",
+    "coursework-design-systems.md",
+    "coursework-digital-accessibility.md",
+    "coursework-information-architecture.md",
+    "coursework-project-ixd.md",
+    "coursework-service-design.md",
+    "coursework-usability-testing.md",
+    "coursework-visual-communication.md",
+}
 
 FORBIDDEN = [
     re.compile(r"course-[a-z0-9-]+\.md", re.I),
     re.compile(r"Pratt Material", re.I),
+    re.compile(r"COURSE\s*[—-].*\.(?:zip|pdf)", re.I),
     re.compile(r"vendor/ui-ux-pro-max", re.I),
     re.compile(r"Human Clarity Institute", re.I),
     re.compile(r"masteraba\.academy", re.I),
@@ -154,6 +168,13 @@ def main() -> int:
 
     if not any((SKILL / "references").glob("*.md")):
         errors.append("skill must contain progressive reference files")
+
+    missing_coursework = sorted(
+        name for name in COURSEWORK_REFERENCES
+        if not (SKILL / "references" / name).is_file()
+    )
+    if missing_coursework:
+        errors.append(f"missing coursework synthesis: {', '.join(missing_coursework)}")
 
     if errors:
         print("Validation failed:", file=sys.stderr)

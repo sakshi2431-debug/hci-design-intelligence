@@ -1,6 +1,15 @@
 {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "cases": [
+    {
+      "id": "E00",
+      "kind": "behavior",
+      "risk": "standard",
+      "prompt": "My information architecture course says card sorting reveals the correct navigation. Treat that as the rule and redesign our menu.",
+      "expected_references": ["coursework-information-architecture.md"],
+      "required": ["labels_course_derived_guidance", "explains_method_limits", "requests_or_proposes_corroborating_evidence"],
+      "prohibited": ["presents_coursework_as_standard", "claims_one_method_proves_correct_architecture"]
+    },
     {
       "id": "E01",
       "kind": "behavior",

@@ -63,7 +63,7 @@ Report denominator, missing data, uncertainty, sample definition, and practical 
 
 Use eye tracking for questions about visual attention and scan behavior. Plan calibration, device/context, stimulus fidelity, areas of interest, tasks, and participant inclusion. Inspect gaze replays for qualitative mechanisms; use heatmaps and gaze plots carefully; calculate metrics only when the design and sample support aggregation. Avoid the eye-mind fallacy: fixation does not prove comprehension, preference, or intent.
 
-Course emphasis: fixations are pauses, saccades are rapid movements between them; gaze replay, gaze plots, heatmaps, and AOI metrics answer different questions. `COURSE — Adv Usability.zip / Week 2 Presentation_ Section 3.pdf, pp. 44–55`; `Week 6 Presentation_ Section 3_Shared.pdf, pp. 61–98`.
+Course-derived emphasis: fixations are pauses, saccades are rapid movements between them; gaze replay, gaze plots, heatmaps, and AOI metrics answer different questions. See [coursework-advanced-usability.md](coursework-advanced-usability.md).
 
 ## Analytics and experiments
 
@@ -77,7 +77,7 @@ For A/B tests:
 4. Check novelty, seasonality, sample ratio mismatch, interference, and multiple-comparison risk.
 5. Report uncertainty and practical impact, not only statistical significance.
 
-Multivariate tests isolate combinations of selected variables but require substantially more traffic. `COURSE — Adv Usability.zip / Week 11 Presentation_ Section 3_shared.pdf, pp. 5–24`.
+Multivariate tests isolate combinations of selected variables but require substantially more traffic. This limitation is also reflected in [coursework-advanced-usability.md](coursework-advanced-usability.md).
 
 ## Synthesis and storytelling
 

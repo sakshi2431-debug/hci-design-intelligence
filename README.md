@@ -16,7 +16,7 @@ The repository keeps one canonical body of HCI knowledge and exposes it through 
 - design research, critique experiences, define guardrails, and evaluate behavior;
 - distinguish observations, evidence, heuristics, assumptions, and recommendations.
 
-It does **not** bundle UI/UX Pro Max, private course archives, or course-derived notes. Visual-design and implementation systems can be used separately after human, interaction, and system requirements are established.
+It includes original, public-safe syntheses of nine graduate HCI and design courses. It does **not** redistribute private course archives, readings, slides, assignments, rubrics, participant data, or student/client material. Visual-design and implementation systems can be used separately after human, interaction, and system requirements are established.
 
 ## Repository structure
 
@@ -76,7 +76,7 @@ python3 scripts/build_generic_bundle.py
 python3 scripts/build_generic_bundle.py --profile ai
 ```
 
-Profiles are `core`, `ai`, `research`, `accessibility`, `product`, and `all`. Use the generated bundle as project knowledge alongside `adapters/generic/SYSTEM-PROMPT.md`. Prefer the canonical `SKILL.md` with progressive reference retrieval whenever the host supports files.
+Profiles are `core`, `ai`, `research`, `accessibility`, `product`, `coursework`, and `all`. Use the generated bundle as project knowledge alongside `adapters/generic/SYSTEM-PROMPT.md`. Prefer the canonical `SKILL.md` with progressive reference retrieval whenever the host supports files.
 
 ## Invoke it
 
@@ -113,7 +113,7 @@ The result is `dist/hci-design-intelligence-repository.zip`. It contains the tra
 
 ## Provenance and licensing
 
-Every source family has an explicit epistemic role and provenance. See [docs/provenance.md](docs/provenance.md), [NOTICE.md](NOTICE.md), and [LICENSE.md](LICENSE.md).
+Every source family has an explicit epistemic role and provenance. See [docs/provenance.md](docs/provenance.md), [docs/coursework-provenance.md](docs/coursework-provenance.md), [NOTICE.md](NOTICE.md), and [LICENSE.md](LICENSE.md).
 
 Original prose is CC BY 4.0 and scripts/configuration are MIT licensed. PAIR is cited as an influence; this release does not redistribute or adapt PAIR text or worksheets. Preserved upstream notices remain applicable to the specific derived material they identify.
 

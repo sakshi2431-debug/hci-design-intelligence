@@ -63,4 +63,4 @@ For each lens state:
 4. Design implication.
 5. Testable prediction and evaluation method.
 
-Course link: the Information Architecture course explicitly points students to Laws of UX as a design-psychology resource. `COURSE — Information Architecture.zip / 7. Sketching, Interaction Flows.pdf, p. 9`.
+Course-derived context: the Information Architecture synthesis treats design-psychology resources as prompts for investigation, not universal laws. See [coursework-information-architecture.md](coursework-information-architecture.md).

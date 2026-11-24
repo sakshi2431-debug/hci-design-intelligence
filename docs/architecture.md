@@ -17,6 +17,6 @@ Adapters must not redefine HCI behavior. A platform-specific improvement belongs
 
 ## Deliberate exclusions
 
-This public core does not include private coursework, student work, licensed course archives, or an embedded copy of UI/UX Pro Max. Those may exist as private layers or separate tools, but the public skill must remain usable and attributable on its own.
+This public core includes original, public-safe coursework syntheses but no private course files, student work, licensed course archives, or embedded copy of UI/UX Pro Max. Private layers and separate tools may be used locally, but the public skill remains usable and attributable on its own.
 
 Visual-design and implementation tools are optional downstream capabilities. They do not outrank people-centered requirements, research evidence, accessibility, or system safeguards.
