@@ -1,11 +1,11 @@
 ---
 name: hci-design-intelligence
-description: Model-agnostic, people-centered HCI and product-design intelligence for ideating, researching, designing, critiquing, and evaluating products, services, interfaces, AI systems, agentic workflows, accessibility, growth, and engagement. Use when a product decision should balance human goals, wellbeing, rights, evidence, and legitimate organizational outcomes.
-license: Mixed; see ../../LICENSE.md and licenses/
+description: People-centered HCI and product-design intelligence for product or interface critique, usability studies and research plans, accessibility audits, design handoffs, design debt and governance, growth and engagement, Microsoft HAX or Google PAIR discovery, and AI-agent permissions, authority, recovery, and evaluation. Use when shaping or evaluating a product, service, workflow, interface, or AI system; do not use for coding-only work with no product or interaction decision.
+license: Mixed (CC BY 4.0 original prose; MIT scripts and HAX Playbook and Designer Skills Pack material); see LICENSE.md and licenses/
 compatibility: Agent Skills-compatible hosts. References need filesystem reads; optional repository scripts need Python 3.10+.
 metadata:
   author: Sakshir
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # HCI Design Intelligence
@@ -51,7 +51,7 @@ Read [references/people-centered-product-design.md](references/people-centered-p
 
 ## Human–AI and agentic systems
 
-Use Microsoft HAX and Google PAIR as important but not exclusive lenses. During discovery, route to the relevant worksheet or guideline and ask its questions interactively; do not dump every prompt at once. Maintain a living record of decisions, assumptions, risks, and requirements.
+Use Microsoft HAX and Google PAIR as important but not exclusive lenses. During discovery, route to the relevant discovery lens or HAX guideline and ask its questions interactively; do not dump every prompt at once. Maintain a living record of decisions, assumptions, risks, and requirements.
 
 For each meaningful agent action, decide separately:
 
@@ -66,7 +66,7 @@ For each meaningful agent action, decide separately:
 
 Never grant broad authority because one low-risk action was approved. Treat permission as specific to actor, action, resource, scope, duration, consequence, and revocation.
 
-Read [references/hax-pair-interactive-facilitation.md](references/hax-pair-interactive-facilitation.md), [references/pair-worksheets.md](references/pair-worksheets.md), [references/hax-guidelines.md](references/hax-guidelines.md), [references/agentic-workflows-and-human-control.md](references/agentic-workflows-and-human-control.md), and [references/ai-agent-evaluation.md](references/ai-agent-evaluation.md).
+Read [references/ai-facilitation-and-decision-canvas.md](references/ai-facilitation-and-decision-canvas.md), [references/ai-product-discovery.md](references/ai-product-discovery.md), [references/hax-guidelines.md](references/hax-guidelines.md), [references/agentic-workflows-and-human-control.md](references/agentic-workflows-and-human-control.md), and [references/ai-agent-evaluation.md](references/ai-agent-evaluation.md).
 
 ## Research, critique, accessibility, and evaluation
 
@@ -76,6 +76,16 @@ Read [references/hax-pair-interactive-facilitation.md](references/hax-pair-inter
 - Evaluate AI systems with representative tasks, matched do-not-act cases, repeated trials, trace inspection, human outcomes, interaction quality, safety, accessibility, cost, and production monitoring. Avoid one aggregate score.
 
 Read [references/research-and-evaluation.md](references/research-and-evaluation.md), [references/research-rigor.md](references/research-rigor.md), [references/product-critique-and-design-judgment.md](references/product-critique-and-design-judgment.md), [references/accessibility-standards.md](references/accessibility-standards.md), and [references/skill-behavior-evals.md](references/skill-behavior-evals.md).
+
+Route by the decision, not only the topic:
+
+- Funnel, retention, event-data anomaly, or disagreement between analytics and research: read [references/behavioral-evidence-and-triangulation.md](references/behavioral-evidence-and-triangulation.md).
+- Human learning, skill transfer, performance assessment, AI-use self-report, or behavioral testing: read [references/learning-skill-and-behavioral-assessment.md](references/learning-skill-and-behavioral-assessment.md).
+- Several concepts or meaningfully different solution models: read [references/design-exploration-and-preference-learning.md](references/design-exploration-and-preference-learning.md) and preserve the decision record.
+- Design debt, prioritization, ownership, adoption, or governance: read [references/design-operations-governance-and-influence.md](references/design-operations-governance-and-influence.md).
+- Any AI action that changes external state: read [references/agentic-workflows-and-human-control.md](references/agentic-workflows-and-human-control.md) plus [references/ai-facilitation-and-decision-canvas.md](references/ai-facilitation-and-decision-canvas.md).
+- Accessibility certification or conformance claim: read both [references/accessibility-standards.md](references/accessibility-standards.md) and [references/accessibility-evaluation.md](references/accessibility-evaluation.md); never certify from screenshots or automated scans alone.
+- Conflicting sources or a request for “the rule”: apply the evidence hierarchy here and [references/output-patterns.md](references/output-patterns.md).
 
 ## Visual design and implementation
 
@@ -93,7 +103,7 @@ Load only the references needed for the current decision:
 - Deeper primary-source routing: `expanded-primary-source-library.md`
 - Applied usability: `nng-applied-guidance.md`, `research-and-evaluation.md`
 - Accessibility: `accessibility-standards.md`, `accessibility-evaluation.md`
-- AI interaction: `human-ai-interaction.md`, `hax-*`, `pair-*`
+- AI interaction: `human-ai-interaction.md`, `ai-facilitation-and-decision-canvas.md`, `ai-product-discovery.md`, `ai-product-workshop-templates.md`, `ai-interaction-pattern-index.md`, `hax-guidelines.md`, `hax-design-patterns.md`, `hax-planning-workbook.md`, `hax-playbook-failures.md`
 - Agentic authority, security, and evaluation: `agentic-workflows-and-human-control.md`, `ai-security-and-secure-interaction.md`, `ai-agent-evaluation.md`
 - Personality and relational cues: `ai-personality-and-relational-design.md`
 - Product critique and decisions: `people-centered-product-design.md`, `product-critique-and-design-judgment.md`, `output-patterns.md`
@@ -103,4 +113,8 @@ Load only the references needed for the current decision:
 
 ## Response contract
 
-Lead with the decision, insight, or highest-priority risk. Use only the structure the user needs. Make recommendations specific and testable. State important tradeoffs, confidence, and what would change the conclusion. When facilitating, end with the next useful question or action—not a generic list of extra work.
+Lead with the decision, insight, or highest-priority risk. Use only the structure the user needs. Make recommendations specific and testable. State important tradeoffs, confidence, and what would change the conclusion.
+
+For consequential claims, make the epistemic role recoverable from the wording or a compact label: **observed**, **supplied evidence**, **external evidence**, **standard**, **heuristic**, **inference**, **assumption**, or **recommendation**. Never state a number, prevalence claim, conversion effect, or “best-performing” claim without a named source or supplied project evidence. Separate confirmed defects from plausible risks, especially for accessibility and design debt. When sources conflict, say what each can establish before recommending a resolution.
+
+For alternatives, retain the decision criteria, tradeoffs, rejected options, and evidence that could revive them. For prioritized debt, include evidence status, affected people or tasks, consequence, owner, dependency, and verification. When facilitating, end with the next useful question or action—not a generic list of extra work.
