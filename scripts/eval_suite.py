@@ -23,10 +23,19 @@ def load_cases() -> dict:
     for case in data["cases"]:
         missing = required - case.keys()
         if missing:
-            raise ValueError(f"{case['id']} missing fields: {sorted(missing)}")
+            raise ValueError(f"{case.get('id', 'unknown')} missing fields: {sorted(missing)}")
         if case["kind"] not in {"behavior", "activation"}:
             raise ValueError(f"{case['id']} has unsupported kind")
+        if case["kind"] == "activation" and case.get("expected") not in {
+            "must_trigger", "must_not_trigger"
+        }:
+            raise ValueError(f"{case['id']} has unsupported activation expectation")
     return data
+
+
+def trial_numbers(case: dict, trials: int) -> range:
+    count = max(trials, 3) if case["risk"] == "safety-critical" else trials
+    return range(1, count + 1)
 
 
 def prepare(trials: int) -> None:
@@ -35,63 +44,117 @@ def prepare(trials: int) -> None:
     output = DIST / "hci-design-intelligence-eval-run.jsonl"
     with output.open("w", encoding="utf-8") as handle:
         for case in data["cases"]:
-            count = max(trials, 3) if case["risk"] == "safety-critical" else trials
-            for trial in range(1, count + 1):
+            for trial in trial_numbers(case, trials):
                 row = {**case, "trial": trial, "skill_version": data["version"]}
                 handle.write(json.dumps(row, ensure_ascii=False) + "\n")
     print(f"Created {output.relative_to(ROOT)}")
 
 
-def score(path: Path) -> int:
+def score(path: Path, trials: int = 1) -> int:
     cases = {case["id"]: case for case in load_cases()["cases"]}
-    rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line]
+    scheduled = {
+        (case_id, trial): case
+        for case_id, case in cases.items()
+        for trial in trial_numbers(case, trials)
+    }
+    judgments: dict[tuple[str, int], dict] = {}
     failures: list[str] = []
+    invalid = False
+    with path.open(encoding="utf-8") as handle:
+        for line_number, line in enumerate(handle, start=1):
+            if not line.strip():
+                continue
+            row = json.loads(line)
+            if not isinstance(row, dict):
+                failures.append(f"line {line_number} judgment must be an object")
+                invalid = True
+                continue
+            case_id, trial = row.get("case_id"), row.get("trial")
+            if not isinstance(case_id, str) or case_id not in cases:
+                failures.append(f"line {line_number} unknown case {case_id!r}")
+                invalid = True
+                continue
+            key = (case_id, trial)
+            if type(trial) is not int or key not in scheduled:
+                failures.append(f"{case_id} trial {trial!r} not scheduled")
+                invalid = True
+                continue
+            if key in judgments:
+                failures.append(f"{case_id} trial {trial} duplicate judgment")
+                invalid = True
+                continue
+            judgments[key] = row
+
     critical_failures = 0
+    passed_trials = 0
     activation = {"must_trigger": [0, 0], "must_not_trigger": [0, 0]}
-    for row in rows:
-        case = cases.get(row.get("case_id"))
-        if not case:
-            failures.append(f"unknown case {row.get('case_id')}")
-            continue
-        if case["kind"] == "activation":
-            expected = case["expected"]
+    for (case_id, trial), case in scheduled.items():
+        row = judgments.get((case_id, trial))
+        expected = case["expected"] if case["kind"] == "activation" else None
+        if expected is not None:
             activation[expected][1] += 1
-            if row.get("passed") is True:
+        if row is None:
+            passed = False
+            failures.append(f"{case_id} trial {trial} missing judgment")
+        elif expected is not None:
+            passed = row.get("passed") is True
+            if passed:
                 activation[expected][0] += 1
             else:
-                failures.append(f"{case['id']} trial {row.get('trial')} activation failed")
-            continue
-        required = row.get("required", {})
-        prohibited = row.get("prohibited", {})
-        passed = all(required.get(key) is True for key in case["required"])
-        passed = passed and all(prohibited.get(key) is False for key in case["prohibited"])
-        if not passed:
-            failures.append(f"{case['id']} trial {row.get('trial')} behavior failed")
-            if case["risk"] == "safety-critical":
-                critical_failures += 1
-    total = len(rows)
-    rate = (total - len(failures)) / total if total else 0
+                failures.append(f"{case_id} trial {trial} activation failed")
+        else:
+            required, prohibited = row.get("required", {}), row.get("prohibited", {})
+            passed = (
+                isinstance(required, dict) and isinstance(prohibited, dict)
+                and all(required.get(key) is True for key in case["required"])
+                and all(prohibited.get(key) is False for key in case["prohibited"])
+            )
+            if not passed:
+                failures.append(f"{case_id} trial {trial} behavior failed")
+        if passed:
+            passed_trials += 1
+        elif case["risk"] == "safety-critical":
+            critical_failures += 1
+
+    total = len(scheduled)
+    rate = passed_trials / total if total else 0
     print(f"Trials: {total}; pass rate: {rate:.1%}; critical failures: {critical_failures}")
     for expected, (passed, count) in activation.items():
         if count:
             print(f"Activation {expected}: {passed}/{count} ({passed / count:.1%})")
     for failure in failures:
         print(f"- {failure}")
-    return 0 if total and rate >= 0.90 and critical_failures == 0 else 1
+    positive_passed, positive_count = activation["must_trigger"]
+    negative_passed, negative_count = activation["must_not_trigger"]
+    passed_release = (
+        total > 0 and len(judgments) == total and not invalid
+        and rate >= 0.90 and critical_failures == 0
+        and positive_passed >= 0.90 * positive_count
+        and negative_passed == negative_count
+    )
+    return 0 if passed_release else 1
+
+
+def positive_trials(value: str) -> int:
+    count = int(value)
+    if count < 1:
+        raise argparse.ArgumentTypeError("trials must be at least 1")
+    return count
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     sub = parser.add_subparsers(dest="command", required=True)
     prep = sub.add_parser("prepare")
-    prep.add_argument("--trials", type=int, default=1)
+    prep.add_argument("--trials", type=positive_trials, default=1)
     scoring = sub.add_parser("score")
     scoring.add_argument("judgments", type=Path)
+    scoring.add_argument("--trials", type=positive_trials, default=1)
     args = parser.parse_args()
     if args.command == "prepare":
-        prepare(max(1, args.trials))
+        prepare(args.trials)
         return 0
-    return score(args.judgments)
+    return score(args.judgments, args.trials)
 
 
 if __name__ == "__main__":
